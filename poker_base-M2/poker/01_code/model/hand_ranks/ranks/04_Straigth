@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+
+namespace poker.code.model.hand_ranks.ranks
+{
+    public class Straight : Ranks
+    {
+        private List<Card> player; // Armazena as cartas do jogador
+
+        public Straight(List<List<Card>> h) : base(h)
+        {
+            player = new List<Card>();
+        }
+
+        // Implementação específica da classe Straight
+        // para o método abstrato da classe base
+
+        // constructor (class / base)        
+        public Straight (List<List<Card>> h) : base (h) 
+        {
+            player = new List<Card>();
+            royal = new List<List<Card>>();
+        }
+
+        // Método para embaralhar o baralho
+        static void Embaralhar(List<string> baralho)
+        {
+            Random rand = new Random();
+            int n = baralho.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rand.Next(n + 1);
+                string value = baralho[k];
+                baralho[k] = baralho[n];
+                baralho[n] = value;
+            }
+        }
+
+        // Método para distribuir uma mão de cartas
+        static List<string> DistribuirMao(List<string> baralho, int tamanhoDaMao)
+        {
+            return baralho.GetRange(0, tamanhoDaMao);
+        }
+    }
+}
+
